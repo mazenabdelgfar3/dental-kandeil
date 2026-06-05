@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1b7a8f">
+  <meta name="description" content="مركز قنديل لطب الأسنان - حجز المواعيد أونلاين">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com 'unsafe-inline' 'unsafe-eval'; img-src 'self' data:; connect-src 'self' https://*.supabase.co">
+  <title>مركز قنديل | حجز المواعيد</title>
+  <link rel="icon" type="image/svg+xml" href="icons/tooth.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            medical: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              300: '#67e8f9',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#1b7a8f',
+              700: '#155161',
+              800: '#0e3d4a',
+              900: '#0a2a33',
+            }
+          },
+          fontFamily: {
+            tajawal: ['Tajawal', 'Cairo', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-tajawal">
+
+<!-- Loading Screen -->
+<div id="loading-screen" class="fixed inset-0 z-[10000] bg-white flex items-center justify-center" style="transition: opacity 0.5s;">
+  <div class="text-center">
+    <img src="icons/tooth.svg" alt="مركز قنديل" class="w-20 h-20 mx-auto mb-4 opacity-80">
+    <div class="spinner mx-auto"></div>
+    <p class="text-medical-600 mt-4 font-semibold">جاري التحميل...</p>
+  </div>
+</div>
+
+<!-- HEADER / NAV -->
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100" dir="rtl">
+  <div class="max-w-7xl mx-auto px-3 sm:px-6">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-medical-600 to-medical-800 rounded-full flex items-center justify-center shadow-md flex-shrink-0">
+          <img src="icons/tooth.svg" alt="شعار" class="w-6 h-6 sm:w-7 sm:h-7 text-white brightness-0 invert">
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-extrabold text-medical-800 leading-tight">مركز قنديل</h1>
+          <p class="text-[10px] sm:text-xs text-medical-600 font-medium leading-tight -mt-0.5">د. حسام عبد الله</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-1.5 sm:gap-3">
+        <a href="https://wa.me/201003657140" target="_blank" rel="noopener" title="واتساب" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-green-500 hover:bg-green-600 text-white flex items-center justify-center transition-all shadow-sm hover:shadow-md active:scale-95">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.76-1.653-2.059-.173-.3-.018-.472.13-.625.133-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+        <button onclick="scrollToBooking()" class="hidden sm:flex items-center gap-2 bg-medical-600 hover:bg-medical-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md hover:shadow-lg active:scale-95">
+          <img src="icons/calendar.svg" alt="" class="icon-img-lg brightness-0 invert">
+          احجز الآن
+        </button>
+        <button onclick="scrollToBooking()" class="sm:hidden bg-medical-600 hover:bg-medical-700 text-white px-4 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md active:scale-95">
+          احجز
+        </button>
+        <button onclick="openAdminLogin()" title="لوحة التحكم" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gray-100 hover:bg-gray-200 text-medical-700 flex items-center justify-center transition-all active:scale-95">
+          <img src="icons/admin.svg" alt="" class="icon-img-lg">
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero-gradient relative overflow-hidden">
+  <div class="absolute inset-0 opacity-10">
+    <div class="absolute top-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-20 text-center text-white">
+    <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm rounded-full px-4 py-1.5 sm:px-6 sm:py-2 mb-4 sm:mb-6 text-sm font-medium border border-white/20">
+      <img src="icons/tooth.svg" alt="" class="icon-img brightness-0 invert">
+      مركز قنديل لطب الأسنان
+    </div>
+    <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4">اهلاً بيكم في مركز الدكتور حسام</h1>
+    <p class="text-xl sm:text-2xl md:text-3xl font-bold text-cyan-200 mb-2">د. حسام عبد الله</p>
+    <p class="text-base sm:text-lg text-white/80 max-w-2xl mx-auto mb-6 sm:mb-8">أخصائي طب وجراحة وتجميل الأسنان - حجز موعدك أونلاين بكل سهولة</p>
+    <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+      <button onclick="scrollToBooking()" class="inline-flex items-center gap-2 bg-white text-medical-700 hover:bg-cyan-50 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-base sm:text-lg font-extrabold transition-all shadow-xl hover:shadow-2xl active:scale-95">
+        <img src="icons/calendar.svg" alt="" class="icon-img-lg">
+        احجز موعدك
+      </button>
+      <a href="https://wa.me/201003657140" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-2xl text-base sm:text-lg font-bold transition-all shadow-lg hover:shadow-xl active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 sm:w-6 sm:h-6"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.76-1.653-2.059-.173-.3-.018-.472.13-.625.133-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        واتساب
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="py-12 sm:py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden shadow-xl">
+          <img src="صورة الهيدر.png" alt="د. حسام عبد الله" class="w-full h-auto object-cover" onerror="this.parentElement.innerHTML='<div class=\'bg-gradient-to-br from-medical-100 to-medical-200 flex items-center justify-center h-80 sm:h-96\'><img src=\'icons/hospital.svg\' class=\'icon-img-5xl opacity-40\'></div>'">
+        </div>
+        <div class="absolute -bottom-4 -left-4 bg-medical-600 text-white rounded-2xl px-5 py-3 shadow-lg hidden md:block">
+          <p class="text-sm font-bold">أكثر من 15 عام</p>
+          <p class="text-xs opacity-80">خبرة في طب الأسنان</p>
+        </div>
+      </div>
+      <div class="animate-in">
+        <div class="inline-flex items-center gap-2 bg-medical-50 text-medical-700 rounded-full px-4 py-1.5 text-sm font-bold mb-4">
+          <img src="icons/tooth.svg" alt="" class="icon-img">
+          من نحن
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-medical-800 mb-4">د. حسام عبد الله</h2>
+        <p class="text-gray-600 leading-relaxed mb-4">دكتور حسام عبد الله، أخصائي طب وجراحة وتجميل الأسنان. خبرة أكثر من 15 عاماً في مجال طب الأسنان التجميلي والعلاجي، حاصل على الزمالة المصرية في جراحة الفم والأسنان.</p>
+        <p class="text-gray-600 leading-relaxed mb-6">يقدم مركز قنديل لطب الأسنان خدمات شاملة على أعلى مستوى من الجودة باستخدام أحدث التقنيات والأجهزة الطبية، مع الالتزام بمعايير التعقيم العالمية لضمان سلامة المرضى.</p>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3 text-gray-700"><span class="w-8 h-8 bg-medical-100 text-medical-600 rounded-full flex items-center justify-center flex-shrink-0"><img src="icons/check.svg" alt="" class="icon-img-lg"></span> علاج وتجميل الأسنان</li>
+          <li class="flex items-center gap-3 text-gray-700"><span class="w-8 h-8 bg-medical-100 text-medical-600 rounded-full flex items-center justify-center flex-shrink-0"><img src="icons/check.svg" alt="" class="icon-img-lg"></span> زراعة وتركيبات الأسنان</li>
+          <li class="flex items-center gap-3 text-gray-700"><span class="w-8 h-8 bg-medical-100 text-medical-600 rounded-full flex items-center justify-center flex-shrink-0"><img src="icons/check.svg" alt="" class="icon-img-lg"></span> حشوات تجميلية وابتسامة هوليوود</li>
+          <li class="flex items-center gap-3 text-gray-700"><span class="w-8 h-8 bg-medical-100 text-medical-600 rounded-full flex items-center justify-center flex-shrink-0"><img src="icons/check.svg" alt="" class="icon-img-lg"></span> جراحة الفم والوجه والفكين</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section id="features" class="py-12 sm:py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10 sm:mb-12">
+      <div class="inline-flex items-center gap-2 bg-medical-100 text-medical-700 rounded-full px-4 py-1.5 text-sm font-bold mb-4">
+        <img src="icons/lightning.svg" alt="" class="icon-img">
+        مميزاتنا
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-medical-800">لماذا تختار مركز قنديل؟</h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <div class="bg-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-medical-500 to-medical-700 rounded-2xl flex items-center justify-center shadow-lg">
+          <img src="icons/rocket.svg" alt="" class="icon-img-3xl brightness-0 invert">
+        </div>
+        <h3 class="text-lg font-extrabold text-medical-800 mb-2">أحدث الأجهزة</h3>
+        <p class="text-gray-500 text-sm">نستخدم أحدث التقنيات والأجهزة الطبية في عالم طب الأسنان</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-medical-500 to-medical-700 rounded-2xl flex items-center justify-center shadow-lg">
+          <img src="icons/soap.svg" alt="" class="icon-img-3xl brightness-0 invert">
+        </div>
+        <h3 class="text-lg font-extrabold text-medical-800 mb-2">تعقيم كامل</h3>
+        <p class="text-gray-500 text-sm">نلتزم بأعلى معايير التعقيم العالمية لضمان سلامتك</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-medical-500 to-medical-700 rounded-2xl flex items-center justify-center shadow-lg">
+          <img src="icons/heart.svg" alt="" class="icon-img-3xl brightness-0 invert">
+        </div>
+        <h3 class="text-lg font-extrabold text-medical-800 mb-2">متابعة مستمرة</h3>
+        <p class="text-gray-500 text-sm">متابعة الحالات بعد العلاج لضمان أفضل النتائج</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 text-center shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100">
+        <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-medical-500 to-medical-700 rounded-2xl flex items-center justify-center shadow-lg">
+          <img src="icons/lightning.svg" alt="" class="icon-img-3xl brightness-0 invert">
+        </div>
+        <h3 class="text-lg font-extrabold text-medical-800 mb-2">حجز سريع</h3>
+        <p class="text-gray-500 text-sm">احجز موعدك أونلاين بكل سهولة وفي دقائق معدودة</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section id="services" class="py-12 sm:py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10 sm:mb-12">
+      <div class="inline-flex items-center gap-2 bg-medical-100 text-medical-700 rounded-full px-4 py-1.5 text-sm font-bold mb-4">
+        <img src="icons/stethoscope.svg" alt="" class="icon-img">
+        خدماتنا
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-medical-800">الخدمات التي نقدمها</h2>
+    </div>
+    <div id="services-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5"></div>
+  </div>
+</section>
+
+<!-- BOOKING SECTION -->
+<section id="booking" class="py-12 sm:py-16 bg-gray-50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-8 sm:mb-10">
+      <div class="inline-flex items-center gap-2 bg-medical-100 text-medical-700 rounded-full px-4 py-1.5 text-sm font-bold mb-4">
+        <img src="icons/calendar.svg" alt="" class="icon-img">
+        حجز موعد
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-medical-800">احجز موعدك الآن</h2>
+      <p class="text-gray-500 mt-2">اختر الخدمة والتاريخ والوقت المناسب لك</p>
+    </div>
+
+    <!-- Step Progress -->
+    <div class="flex items-center justify-center gap-2 sm:gap-4 mb-8">
+      <div class="flex items-center gap-2">
+        <div id="step-1-dot" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-medical-600 text-white flex items-center justify-center text-sm font-bold transition-all">1</div>
+        <span class="text-xs sm:text-sm font-bold text-medical-600 hidden sm:inline">الخدمة</span>
+      </div>
+      <div class="w-8 sm:w-12 h-0.5 bg-gray-300"><div id="step-bar-1" class="h-full bg-medical-600 transition-all" style="width:0%"></div></div>
+      <div class="flex items-center gap-2">
+        <div id="step-2-dot" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center text-sm font-bold transition-all">2</div>
+        <span class="text-xs sm:text-sm font-bold text-gray-400 hidden sm:inline">التاريخ</span>
+      </div>
+      <div class="w-8 sm:w-12 h-0.5 bg-gray-300"><div id="step-bar-2" class="h-full bg-medical-600 transition-all" style="width:0%"></div></div>
+      <div class="flex items-center gap-2">
+        <div id="step-3-dot" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center text-sm font-bold transition-all">3</div>
+        <span class="text-xs sm:text-sm font-bold text-gray-400 hidden sm:inline">الوقت</span>
+      </div>
+      <div class="w-8 sm:w-12 h-0.5 bg-gray-300"><div id="step-bar-3" class="h-full bg-medical-600 transition-all" style="width:0%"></div></div>
+      <div class="flex items-center gap-2">
+        <div id="step-4-dot" class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 text-gray-500 flex items-center justify-center text-sm font-bold transition-all">4</div>
+        <span class="text-xs sm:text-sm font-bold text-gray-400 hidden sm:inline">البيانات</span>
+      </div>
+    </div>
+
+    <!-- Step 1: Service Selection -->
+    <div id="step-1" class="step-content">
+      <div class="bg-white rounded-3xl shadow-lg p-4 sm:p-6 border border-gray-100">
+        <h3 class="text-lg font-extrabold text-medical-800 mb-4 text-center">اختر الخدمة</h3>
+        <div id="service-buttons" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
+      </div>
+    </div>
+
+    <!-- Step 2: Date Selection -->
+    <div id="step-2" class="step-content" style="display:none">
+      <div class="bg-white rounded-3xl shadow-lg p-4 sm:p-6 border border-gray-100">
+        <h3 class="text-lg font-extrabold text-medical-800 mb-4 text-center">اختر التاريخ</h3>
+        <div id="date-cards" class="flex gap-2 sm:gap-3 overflow-x-auto pb-3 px-1 scrollbar-hide justify-center" style="-webkit-overflow-scrolling:touch;scrollbar-width:none;"></div>
+      </div>
+    </div>
+
+    <!-- Step 3: Time Selection -->
+    <div id="step-3" class="step-content" style="display:none">
+      <div class="bg-white rounded-3xl shadow-lg p-4 sm:p-6 border border-gray-100">
+        <h3 class="text-lg font-extrabold text-medical-800 mb-4 text-center">اختر الوقت</h3>
+        <p class="text-gray-500 text-sm text-center mb-4">مواعيد العمل: 10:00 ص - 07:00 م</p>
+        <div id="time-slots" class="grid grid-cols-1 gap-3"></div>
+      </div>
+    </div>
+
+    <!-- Step 4: Patient Form -->
+    <div id="step-4" class="step-content" style="display:none">
+      <div class="bg-white rounded-3xl shadow-lg p-4 sm:p-6 border border-gray-100">
+        <h3 class="text-lg font-extrabold text-medical-800 mb-4 text-center">البيانات الشخصية</h3>
+        <div id="booking-summary" class="bg-medical-50 rounded-2xl p-4 mb-5 text-sm space-y-1"></div>
+        <form id="patient-form" onsubmit="return false" class="space-y-4">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1.5">الاسم بالكامل</label>
+            <input type="text" id="patient-name" placeholder="ادخل اسمك بالكامل" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 sm:py-3.5 text-sm focus:border-medical-500 transition-all bg-white" required autocomplete="name">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1.5">رقم الهاتف</label>
+            <input type="tel" id="patient-phone" placeholder="01xxxxxxxxx" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 sm:py-3.5 text-sm focus:border-medical-500 transition-all bg-white" required autocomplete="tel">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1.5">ملاحظات (اختياري)</label>
+            <textarea id="patient-notes" rows="2" placeholder="أي ملاحظات إضافية..." class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 text-sm focus:border-medical-500 transition-all bg-white resize-none"></textarea>
+          </div>
+          <button id="confirm-btn" onclick="confirmBooking()" class="w-full bg-medical-600 hover:bg-medical-700 text-white py-3.5 sm:py-4 px-6 rounded-2xl text-base sm:text-lg font-extrabold transition-all shadow-lg hover:shadow-xl active:scale-[0.98] flex items-center justify-center gap-2">
+            <img src="icons/check.svg" alt="" class="icon-img-lg brightness-0 invert">
+            تأكيد الحجز
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="flex justify-between mt-4 sm:mt-6 gap-3">
+      <button id="prev-btn" onclick="prevStep()" class="px-5 sm:px-8 py-3 rounded-2xl border-2 border-gray-200 text-gray-600 font-bold text-sm transition-all hover:bg-gray-50 active:scale-95 hidden">
+        السابق
+      </button>
+      <button id="next-btn" onclick="nextStep()" class="px-5 sm:px-8 py-3 rounded-2xl bg-medical-600 hover:bg-medical-700 text-white font-bold text-sm transition-all shadow-md hover:shadow-lg active:scale-95 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+        التالي
+        <img src="icons/check.svg" alt="" class="icon-img brightness-0 invert">
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-medical-900 text-white py-8 sm:py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+    <div class="flex items-center justify-center gap-3 mb-4">
+      <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+        <img src="icons/tooth.svg" alt="" class="w-7 h-7 brightness-0 invert opacity-80">
+      </div>
+      <div class="text-right">
+        <h3 class="text-lg font-extrabold">مركز قنديل</h3>
+        <p class="text-sm text-white/60">د. حسام عبد الله</p>
+      </div>
+    </div>
+    <p class="text-white/60 text-sm max-w-md mx-auto mb-4">مركز قنديل لطب الأسنان - نقدم أفضل الخدمات العلاجية والتجميلية بأحدث التقنيات</p>
+    <div class="flex items-center justify-center gap-4 mb-5">
+      <a href="https://wa.me/201003657140" target="_blank" rel="noopener" class="bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.76-1.653-2.059-.173-.3-.018-.472.13-.625.133-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+    </div>
+    <div class="border-t border-white/10 pt-5">
+      <p class="text-white/40 text-xs">جميع الحقوق محفوظة &copy; 2026 مركز قنديل لطب الأسنان | د. حسام عبد الله</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SUCCESS MODAL -->
+<div id="success-modal" class="fixed inset-0 z-[9999] modal-overlay flex items-center justify-center p-4" style="display:none">
+  <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-6 sm:p-8 text-center modal-pop">
+    <div class="w-20 h-20 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+      <img src="icons/check.svg" alt="" class="icon-img-5xl text-green-500">
+    </div>
+    <h3 class="text-2xl font-extrabold text-medical-800 mb-2">تم الحجز بنجاح!</h3>
+    <p class="text-gray-500 mb-2">شكراً لك <span id="success-name" class="font-bold text-medical-700"></span></p>
+    <p class="text-gray-500 text-sm mb-1">موعدك مع <strong>د. حسام عبد الله</strong></p>
+    <p class="text-gray-500 text-sm mb-1" id="success-service"></p>
+    <p class="text-gray-500 text-sm mb-4" id="success-datetime"></p>
+    <div class="bg-medical-50 rounded-2xl p-4 mb-5 text-sm">
+      <p class="text-medical-700 font-bold mb-1">سيتم تأكيد الحجز عبر الواتساب</p>
+      <p class="text-gray-500">تأكد من صحة رقم الهاتف المدخل</p>
+    </div>
+    <div class="flex flex-col gap-3">
+      <a id="success-wa-link" href="#" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-3 rounded-2xl font-bold transition-all shadow-md active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.76-1.653-2.059-.173-.3-.018-.472.13-.625.133-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        إرسال تأكيد واتساب
+      </a>
+      <button onclick="closeSuccessModal()" class="py-3 rounded-2xl border-2 border-gray-200 text-gray-600 font-bold transition-all hover:bg-gray-50 active:scale-95">
+        إغلاق
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN MODAL -->
+<div id="admin-login-modal" class="fixed inset-0 z-[9998] modal-overlay flex items-center justify-center p-4" style="display:none">
+  <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-6 sm:p-8 modal-pop">
+    <div class="text-center mb-6">
+      <div class="w-16 h-16 mx-auto mb-3 bg-medical-100 rounded-full flex items-center justify-center">
+        <img src="icons/lock.svg" alt="" class="icon-img-3xl text-medical-600">
+      </div>
+      <h3 class="text-xl font-extrabold text-medical-800">لوحة التحكم</h3>
+      <p class="text-gray-500 text-sm mt-1">يرجى إدخال كلمة المرور</p>
+    </div>
+    <form id="admin-login-form" onsubmit="adminLogin(event)">
+      <input type="password" id="admin-password-input" placeholder="كلمة المرور" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3.5 text-sm text-center focus:border-medical-500 transition-all mb-4" autocomplete="current-password">
+      <p id="admin-login-error" class="text-red-500 text-sm text-center mb-3 hidden">كلمة المرور غير صحيحة</p>
+      <button type="submit" class="w-full bg-medical-600 hover:bg-medical-700 text-white py-3.5 rounded-2xl font-extrabold transition-all shadow-md hover:shadow-lg active:scale-[0.98] flex items-center justify-center gap-2">
+        <img src="icons/lock.svg" alt="" class="icon-img brightness-0 invert">
+        دخول
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel" class="admin-panel">
+  <div class="flex h-screen" dir="rtl">
+    <!-- Admin Sidebar -->
+    <div class="admin-sidebar text-white flex flex-col">
+      <div class="text-center py-4 border-b border-white/10">
+        <img src="icons/tooth.svg" alt="" class="w-10 h-10 mx-auto mb-1 brightness-0 invert opacity-80">
+        <p class="text-xs font-bold opacity-80">مركز قنديل</p>
+        <p class="text-[10px] opacity-50">لوحة التحكم</p>
+      </div>
+      <nav class="flex-1 p-2 space-y-1 overflow-y-auto">
+        <button class="admin-nav-btn active" onclick="switchAdminTab('dashboard',this)">
+          <div class="flex items-center gap-2"><img src="icons/chart.svg" alt="" class="icon-img brightness-0 invert">الإحصائيات</div>
+        </button>
+        <button class="admin-nav-btn" onclick="switchAdminTab('bookings',this)">
+          <div class="flex items-center gap-2"><img src="icons/calendar.svg" alt="" class="icon-img brightness-0 invert">الحجوزات</div>
+        </button>
+        <button class="admin-nav-btn" onclick="switchAdminTab('services-mgmt',this)">
+          <div class="flex items-center gap-2"><img src="icons/stethoscope.svg" alt="" class="icon-img brightness-0 invert">الخدمات</div>
+        </button>
+        <button class="admin-nav-btn" onclick="switchAdminTab('settings',this)">
+          <div class="flex items-center gap-2"><img src="icons/gear.svg" alt="" class="icon-img brightness-0 invert">الإعدادات</div>
+        </button>
+      </nav>
+      <div class="border-t border-white/10 p-3">
+        <button onclick="adminLogout()" class="admin-nav-btn">
+          <div class="flex items-center gap-2"><img src="icons/exit.svg" alt="" class="icon-img brightness-0 invert">تسجيل خروج</div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Admin Content -->
+    <div class="flex-1 p-3 sm:p-6 overflow-y-auto bg-gray-100">
+      <!-- Dashboard Tab -->
+      <div id="admin-dashboard" class="admin-section active">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-medical-800 mb-5">الإحصائيات</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <div class="stat-card bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center"><img src="icons/calendar.svg" alt="" class="icon-img-lg text-blue-600"></div>
+              <span class="text-xs sm:text-sm text-gray-500 font-bold">إجمالي الحجوزات</span>
+            </div>
+            <p id="stat-total" class="text-2xl sm:text-3xl font-extrabold text-medical-800">0</p>
+          </div>
+          <div class="stat-card bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 bg-green-100 rounded-xl flex items-center justify-center"><img src="icons/check.svg" alt="" class="icon-img-lg text-green-600"></div>
+              <span class="text-xs sm:text-sm text-gray-500 font-bold">مؤكدة</span>
+            </div>
+            <p id="stat-confirmed" class="text-2xl sm:text-3xl font-extrabold text-green-600">0</p>
+          </div>
+          <div class="stat-card bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center"><img src="icons/time.svg" alt="" class="icon-img-lg text-yellow-600"></div>
+              <span class="text-xs sm:text-sm text-gray-500 font-bold">معلق</span>
+            </div>
+            <p id="stat-pending" class="text-2xl sm:text-3xl font-extrabold text-yellow-600">0</p>
+          </div>
+          <div class="stat-card bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-gray-100">
+            <div class="flex items-center gap-3 mb-2">
+              <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center"><img src="icons/trash.svg" alt="" class="icon-img-lg text-red-600"></div>
+              <span class="text-xs sm:text-sm text-gray-500 font-bold">ملغي</span>
+            </div>
+            <p id="stat-cancelled" class="text-2xl sm:text-3xl font-extrabold text-red-600">0</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bookings Tab -->
+      <div id="admin-bookings" class="admin-section">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-5">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-medical-800">الحجوزات</h2>
+          <div class="flex gap-2 w-full sm:w-auto">
+            <select id="booking-filter" onchange="renderAdminBookings()" class="border-2 border-gray-200 rounded-xl px-3 py-2 text-sm font-bold text-gray-700 bg-white">
+              <option value="all">الكل</option>
+              <option value="pending">معلق</option>
+              <option value="confirmed">مؤكد</option>
+              <option value="completed">منتهي</option>
+              <option value="cancelled">ملغي</option>
+            </select>
+            <input type="text" id="booking-search" placeholder="بحث..." oninput="debounceSearch(this.value)" class="border-2 border-gray-200 rounded-xl px-3 py-2 text-sm bg-white flex-1 sm:flex-none">
+            <button onclick="refreshBookings()" class="bg-medical-600 text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-medical-700 transition-all"><img src="icons/refresh.svg" alt="" class="icon-img brightness-0 invert"></button>
+          </div>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-100 bg-gray-50">
+                <th class="text-right p-3 font-extrabold text-medical-800">#</th>
+                <th class="text-right p-3 font-extrabold text-medical-800">الاسم</th>
+                <th class="text-right p-3 font-extrabold text-medical-800">الهاتف</th>
+                <th class="text-right p-3 font-extrabold text-medical-800">الخدمة</th>
+                <th class="text-right p-3 font-extrabold text-medical-800">التاريخ</th>
+                <th class="text-right p-3 font-extrabold text-medical-800">الوقت</th>
+                <th class="text-right p-3 font-extrabold text-medical-800">الحالة</th>
+                <th class="text-center p-3 font-extrabold text-medical-800">إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-tbody"></tbody>
+          </table>
+          <div id="bookings-empty" class="text-center py-10 text-gray-400 font-bold hidden">لا توجد حجوزات</div>
+        </div>
+      </div>
+
+      <!-- Services Mgmt Tab -->
+      <div id="admin-services-mgmt" class="admin-section">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-5">
+          <h2 class="text-xl sm:text-2xl font-extrabold text-medical-800">إدارة الخدمات</h2>
+          <button onclick="showAddServiceModal()" class="bg-medical-600 hover:bg-medical-700 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md flex items-center gap-2">
+            <img src="icons/plus.svg" alt="" class="icon-img brightness-0 invert">
+            إضافة خدمة
+          </button>
+        </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b-2 border-gray-100 bg-gray-50">
+                <th class="text-right p-3 font-extrabold text-medical-800">الخدمة</th>
+                <th class="text-right p-3 font-extrabold text-medical-800">الإيموجي</th>
+                <th class="text-center p-3 font-extrabold text-medical-800">إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="services-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Settings Tab -->
+      <div id="admin-settings" class="admin-section">
+        <h2 class="text-xl sm:text-2xl font-extrabold text-medical-800 mb-5">الإعدادات</h2>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 space-y-5">
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1.5">اسم العيادة</label>
+            <input type="text" id="setting-clinic-name" value="مركز قنديل" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 text-sm focus:border-medical-500 transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1.5">اسم الطبيب</label>
+            <input type="text" id="setting-doctor-name" value="د. حسام عبد الله" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 text-sm focus:border-medical-500 transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1.5">رقم الواتساب (بدون +)</label>
+            <input type="text" id="setting-whatsapp" value="201003657140" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 text-sm focus:border-medical-500 transition-all">
+          </div>
+          <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1.5">كلمة مرور لوحة التحكم</label>
+            <input type="password" id="setting-password" placeholder="كلمة المرور الجديدة" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 text-sm focus:border-medical-500 transition-all">
+          </div>
+          <button onclick="saveSettings()" class="bg-medical-600 hover:bg-medical-700 text-white px-8 py-3 rounded-2xl font-bold transition-all shadow-md flex items-center gap-2">
+            <img src="icons/save.svg" alt="" class="icon-img brightness-0 invert">
+            حفظ الإعدادات
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD SERVICE MODAL -->
+<div id="add-service-modal" class="fixed inset-0 z-[9999] modal-overlay flex items-center justify-center p-4" style="display:none">
+  <div class="bg-white rounded-3xl shadow-2xl max-w-sm w-full p-6 modal-pop">
+    <h3 class="text-lg font-extrabold text-medical-800 mb-4 text-center" id="service-modal-title">إضافة خدمة جديدة</h3>
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-bold text-gray-700 mb-1.5">اسم الخدمة</label>
+        <input type="text" id="service-name-input" placeholder="اسم الخدمة" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 text-sm focus:border-medical-500 transition-all">
+      </div>
+      <div>
+        <label class="block text-sm font-bold text-gray-700 mb-1.5">الإيموجي</label>
+        <input type="text" id="service-emoji-input" placeholder="🦷" maxlength="2" class="w-full border-2 border-gray-200 rounded-2xl px-4 py-3 text-sm text-center text-2xl focus:border-medical-500 transition-all">
+      </div>
+      <input type="hidden" id="service-edit-id" value="">
+      <div class="flex gap-3">
+        <button onclick="saveService()" class="flex-1 bg-medical-600 hover:bg-medical-700 text-white py-3 rounded-2xl font-bold transition-all shadow-md">حفظ</button>
+        <button onclick="closeAddServiceModal()" class="flex-1 border-2 border-gray-200 text-gray-600 py-3 rounded-2xl font-bold transition-all hover:bg-gray-50">إلغاء</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.min.js"></script>
+<script src="supabase-setup.js"></script>
+
+<script>
+// ============================================================
+// CONFIG & STATE
+// ============================================================
+const CONFIG = {
+  whatsapp: '201003657140',
+  doctorName: 'د. حسام عبد الله',
+  clinicName: 'مركز قنديل',
+  workStart: 10,
+  workEnd: 19,
+  slotInterval: 30,
+  daysToShow: 7,
+  adminTimeout: 24 * 60 * 60 * 1000,
+};
+
+let state = {
+  step: 1,
+  selectedService: null,
+  selectedDate: null,
+  selectedTime: null,
+  bookings: [],
+  services: [
+    { id: 's1', name: 'حشو أسنان', emoji: '🦷' },
+    { id: 's2', name: 'تنظيف أسنان', emoji: '🪥' },
+    { id: 's3', name: 'تبييض أسنان', emoji: '😁' },
+    { id: 's4', name: 'تقويم أسنان', emoji: '🔩' },
+    { id: 's5', name: 'ابتسامة هوليود', emoji: '✨' },
+    { id: 's6', name: 'خلع أسنان', emoji: '🩺' },
+    { id: 's7', name: 'زراعة أسنان', emoji: '🔬' },
+    { id: 's8', name: 'تركيبات أسنان', emoji: '🦷' },
+  ],
+  rateLimit: {},
+};
+
+// ============================================================
+// UTILITY FUNCTIONS
+// ============================================================
+function sanitize(str) {
+  if (!str) return '';
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function formatDateArabic(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  const days = ['الأحد', 'الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'];
+  const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+  return `${days[d.getDay()]}، ${d.getDate()} ${months[d.getMonth()]}`;
+}
+
+function formatDateShort(dateStr) {
+  const d = new Date(dateStr + 'T12:00:00');
+  const days = ['ح', 'ن', 'ث', 'ر', 'خ', 'ج', 'س'];
+  return `${days[d.getDay()]}\n${d.getDate()}`;
+}
+
+function formatTimeArabic(timeStr) {
+  const [h, m] = timeStr.split(':').map(Number);
+  if (h < 12) return `${h}:${m.toString().padStart(2, '0')} ص`;
+  if (h === 12) return `12:${m.toString().padStart(2, '0')} م`;
+  return `${h - 12}:${m.toString().padStart(2, '0')} م`;
+}
+
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+}
+
+function showLoading(btn, text) {
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>';
+  btn._origText = text || btn.innerHTML;
+}
+
+function hideLoading(btn) {
+  btn.disabled = false;
+  btn.innerHTML = btn._origText || btn.innerHTML;
+}
+
+function isRateLimited(key) {
+  const now = Date.now();
+  if (!state.rateLimit[key]) state.rateLimit[key] = [];
+  state.rateLimit[key] = state.rateLimit[key].filter(t => now - t < 60000);
+  if (state.rateLimit[key].length >= 5) return true;
+  state.rateLimit[key].push(now);
+  return false;
+}
+
+function genTimeSlots() {
+  const slots = [];
+  for (let h = CONFIG.workStart; h < CONFIG.workEnd; h++) {
+    for (let m = 0; m < 60; m += CONFIG.slotInterval) {
+      const time = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}`;
+      slots.push(time);
+    }
+  }
+  return slots;
+}
+
+function genDates() {
+  const dates = [];
+  const today = new Date();
+  for (let i = 1; i <= CONFIG.daysToShow; i++) {
+    const d = new Date(today);
+    d.setDate(d.getDate() + i);
+    if (d.getDay() === 5) continue;
+    dates.push(d.toISOString().split('T')[0]);
+  }
+  return dates;
+}
+
+function isSlotBooked(date, time) {
+  return state.bookings.some(b => b.date === date && b.time === time && b.status !== 'cancelled' && b.status !== 'completed');
+}
+
+function getSlotCount(date) {
+  const slots = genTimeSlots();
+  const booked = slots.filter(t => isSlotBooked(date, t)).length;
+  return { total: slots.length, booked, available: slots.length - booked };
+}
+
+function getStatusClass(status) {
+  const m = { pending: 'pending', confirmed: 'confirmed', completed: 'completed', cancelled: 'cancelled' };
+  return 'status-badge ' + (m[status] || 'pending');
+}
+
+function getStatusText(status) {
+  const m = { pending: 'معلق', confirmed: 'مؤكد', completed: 'منتهي', cancelled: 'ملغي' };
+  return m[status] || 'معلق';
+}
+
+// ============================================================
+// SERVICES
+// ============================================================
+function loadServices() {
+  try {
+    const saved = localStorage.getItem('hk_services');
+    if (saved) state.services = JSON.parse(saved);
+  } catch (e) { /* ignore */ }
+  if (!state.services || state.services.length === 0) {
+    state.services = [
+      { id: 's1', name: 'حشو أسنان', emoji: '🦷' },
+      { id: 's2', name: 'تنظيف أسنان', emoji: '🪥' },
+      { id: 's3', name: 'تبييض أسنان', emoji: '😁' },
+      { id: 's4', name: 'تقويم أسنان', emoji: '🔩' },
+      { id: 's5', name: 'ابتسامة هوليود', emoji: '✨' },
+      { id: 's6', name: 'خلع أسنان', emoji: '🩺' },
+      { id: 's7', name: 'زراعة أسنان', emoji: '🔬' },
+      { id: 's8', name: 'تركيبات أسنان', emoji: '🦷' },
+    ];
+  }
+  saveServices();
+}
+
+function saveServices() {
+  try { localStorage.setItem('hk_services', JSON.stringify(state.services)); } catch (e) { /* ignore */ }
+}
+
+function renderServicesUI() {
+  const grid = document.getElementById('services-grid');
+  if (!grid) return;
+  grid.innerHTML = state.services.map(s => `
+    <div class="bg-gray-50 hover:bg-medical-50 rounded-2xl p-4 sm:p-5 text-center transition-all duration-300 hover:shadow-md border border-gray-100 hover:border-medical-200 group">
+      <div class="text-3xl sm:text-4xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300 inline-block">${s.emoji}</div>
+      <h4 class="text-sm sm:text-base font-extrabold text-medical-800">${sanitize(s.name)}</h4>
+    </div>
+  `).join('');
+}
+
+function renderServiceButtons() {
+  const container = document.getElementById('service-buttons');
+  if (!container) return;
+  container.innerHTML = state.services.map(s => `
+    <button onclick="selectService('${s.id}')" id="svc-btn-${s.id}" class="service-btn border-2 border-gray-200 rounded-2xl p-4 text-center transition-all hover:border-medical-400 hover:bg-medical-50 active:scale-[0.97] flex items-center gap-3">
+      <span class="text-2xl">${s.emoji}</span>
+      <span class="font-bold text-gray-700 text-sm sm:text-base">${sanitize(s.name)}</span>
+    </button>
+  `).join('');
+}
+
+function selectService(id) {
+  state.selectedService = id;
+  document.querySelectorAll('.service-btn').forEach(b => {
+    b.classList.remove('selected', 'bg-medical-600', 'text-white', 'border-medical-600');
+    b.classList.add('border-gray-200');
+    b.querySelector('span:last-child').classList.remove('text-white');
+    b.querySelector('span:last-child').classList.add('text-gray-700');
+  });
+  const btn = document.getElementById('svc-btn-' + id);
+  if (btn) {
+    btn.classList.remove('border-gray-200');
+    btn.classList.add('selected', 'bg-medical-600', 'text-white', 'border-medical-600');
+    btn.querySelector('span:last-child').classList.remove('text-gray-700');
+    btn.querySelector('span:last-child').classList.add('text-white');
+  }
+  goToStep(2);
+}
+
+// ============================================================
+// DATE & TIME
+// ============================================================
+function renderDates() {
+  const container = document.getElementById('date-cards');
+  if (!container) return;
+  const dates = genDates();
+  container.innerHTML = dates.map(d => {
+    const count = getSlotCount(d);
+    const fullClass = count.available === 0 ? 'full' : '';
+    const selectedClass = state.selectedDate === d ? 'selected' : '';
+    return `<div class="date-card ${fullClass} ${selectedClass}" onclick="selectDate('${d}')">
+      <div class="text-xs text-gray-400 font-bold">${d.split('-')[2] + '/' + d.split('-')[1]}</div>
+      <div class="text-xs sm:text-sm font-extrabold mt-1">${formatDateShort(d).split('\n')[0]}</div>
+      <div class="text-lg sm:text-xl font-extrabold text-medical-700 mt-0.5">${formatDateShort(d).split('\n')[1]}</div>
+      <div class="text-[10px] text-gray-400 mt-1">${count.available} مواعيد</div>
+    </div>`;
+  }).join('');
+}
+
+function selectDate(date) {
+  state.selectedDate = date;
+  state.selectedTime = null;
+  document.querySelectorAll('.date-card').forEach(c => c.classList.remove('selected'));
+  const el = document.querySelector(`.date-card[onclick*="selectDate('${date}')"]`);
+  if (el) el.classList.add('selected');
+  goToStep(3);
+}
+
+function renderTimes() {
+  const container = document.getElementById('time-slots');
+  if (!container || !state.selectedDate) return;
+  const slots = genTimeSlots();
+  container.innerHTML = slots.map(t => {
+    const booked = isSlotBooked(state.selectedDate, t);
+    const selectedClass = state.selectedTime === t ? 'selected' : '';
+    return `<div class="time-slot ${booked ? 'booked' : ''} ${selectedClass}" onclick="${booked ? '' : "selectTime('" + t + "')"}">
+      ${formatTimeArabic(t)} ${booked ? '(محجوز)' : ''}
+    </div>`;
+  }).join('');
+}
+
+function selectTime(time) {
+  state.selectedTime = time;
+  document.querySelectorAll('.time-slot').forEach(c => c.classList.remove('selected'));
+  const el = document.querySelector(`.time-slot[onclick*="selectTime('${time}')"]`);
+  if (el) el.classList.add('selected');
+  goToStep(4);
+}
+
+// ============================================================
+// STEP NAVIGATION
+// ============================================================
+function goToStep(n) {
+  state.step = n;
+  for (let i = 1; i <= 4; i++) {
+    const el = document.getElementById('step-' + i);
+    if (el) el.style.display = i === n ? 'block' : 'none';
+  }
+  for (let i = 1; i <= 4; i++) {
+    const dot = document.getElementById('step-' + i + '-dot');
+    if (dot) {
+      dot.classList.remove('bg-gray-300', 'text-gray-500', 'bg-medical-600', 'text-white');
+      dot.classList.add(i <= n ? 'bg-medical-600' : 'bg-gray-300', i <= n ? 'text-white' : 'text-gray-500');
+    }
+    const bar = document.getElementById('step-bar-' + i);
+    if (bar) bar.style.width = i < n ? '100%' : '0%';
+  }
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  if (prevBtn) prevBtn.style.display = n > 1 ? 'inline-flex' : 'none';
+  if (nextBtn) {
+    if (n === 1) {
+      nextBtn.style.display = 'inline-flex';
+      nextBtn.disabled = !state.selectedService;
+    } else if (n === 2) {
+      nextBtn.style.display = 'inline-flex';
+      nextBtn.disabled = !state.selectedDate;
+    } else if (n === 3) {
+      nextBtn.style.display = 'inline-flex';
+      nextBtn.disabled = !state.selectedTime;
+    } else {
+      nextBtn.style.display = 'none';
+    }
+  }
+  if (n === 2) renderDates();
+  if (n === 3) renderTimes();
+  if (n === 4) renderBookingSummary();
+  updateBookingSummary();
+  document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function nextStep() {
+  if (state.step < 4) goToStep(state.step + 1);
+}
+
+function prevStep() {
+  if (state.step > 1) { state.step--; goToStep(state.step); }
+}
+
+function renderBookingSummary() {
+  const el = document.getElementById('booking-summary');
+  if (!el) return;
+  const service = state.services.find(s => s.id === state.selectedService);
+  let html = '<div class="font-bold text-medical-800 mb-2">ملخص الحجز:</div>';
+  if (service) html += `<div class="flex justify-between"><span class="text-gray-500">الخدمة:</span><span class="font-bold text-gray-700">${service.emoji} ${sanitize(service.name)}</span></div>`;
+  if (state.selectedDate) html += `<div class="flex justify-between"><span class="text-gray-500">التاريخ:</span><span class="font-bold text-gray-700">${formatDateArabic(state.selectedDate)}</span></div>`;
+  if (state.selectedTime) html += `<div class="flex justify-between"><span class="text-gray-500">الوقت:</span><span class="font-bold text-gray-700">${formatTimeArabic(state.selectedTime)}</span></div>`;
+  html += `<div class="flex justify-between"><span class="text-gray-500">الطبيب:</span><span class="font-bold text-gray-700">${CONFIG.doctorName}</span></div>`;
+  el.innerHTML = html;
+}
+
+function updateBookingSummary() { renderBookingSummary(); }
+
+// ============================================================
+// BOOKING
+// ============================================================
+function validatePhone(p) {
+  return /^01[0-9]{9}$/.test(p.replace(/\s/g, ''));
+}
+
+async function confirmBooking() {
+  const name = document.getElementById('patient-name').value.trim();
+  const phone = document.getElementById('patient-phone').value.trim();
+  const notes = document.getElementById('patient-notes').value.trim();
+  if (!name || name.length < 3) { alert('يرجى إدخال الاسم بالكامل'); return; }
+  if (!validatePhone(phone)) { alert('يرجى إدخال رقم هاتف صحيح (11 رقم)'); return; }
+  if (isRateLimited('booking')) { alert('طلبات كثيرة جداً، حاول بعد دقيقة'); return; }
+  const btn = document.getElementById('confirm-btn');
+  showLoading(btn, 'تأكيد الحجز');
+  try {
+    const booking = {
+      id: generateId(),
+      name: sanitize(name),
+      phone: sanitize(phone),
+      notes: sanitize(notes),
+      service: state.selectedService,
+      date: state.selectedDate,
+      time: state.selectedTime,
+      status: 'pending',
+      createdAt: new Date().toISOString(),
+      doctor: CONFIG.doctorName,
+    };
+    state.bookings.push(booking);
+    localStorage.setItem('hk_bookings', JSON.stringify(state.bookings));
+    if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+      try {
+        await supabaseClient.from('bookings').insert([{
+          id: booking.id, name: booking.name, phone: booking.phone,
+          notes: booking.notes, service: booking.service, date: booking.date,
+          time: booking.time, status: booking.status, doctor: booking.doctor,
+          created_at: booking.createdAt,
+        }]);
+      } catch (e) { console.warn('Supabase sync failed:', e); }
+    }
+    showSuccessModal(booking);
+  } catch (e) {
+    alert('حدث خطأ، يرجى المحاولة مرة أخرى');
+  } finally {
+    hideLoading(btn);
+  }
+}
+
+function showSuccessModal(booking) {
+  const modal = document.getElementById('success-modal');
+  const service = state.services.find(s => s.id === booking.service);
+  document.getElementById('success-name').textContent = booking.name;
+  document.getElementById('success-service').textContent = (service ? service.emoji + ' ' : '') + (service ? service.name : '');
+  document.getElementById('success-datetime').textContent = formatDateArabic(booking.date) + ' - ' + formatTimeArabic(booking.time);
+  const msg = encodeURIComponent(
+    `مرحبا د. حسام عبد الله\n\nتم حجز موعد جديد:\nالاسم: ${booking.name}\nالهاتف: ${booking.phone}\nالخدمة: ${service ? service.name : ''}\nالتاريخ: ${formatDateArabic(booking.date)}\nالوقت: ${formatTimeArabic(booking.time)}\nملاحظات: ${booking.notes || 'لا يوجد'}\n\nرقم الحجز: ${booking.id}`
+  );
+  document.getElementById('success-wa-link').href = `https://wa.me/${CONFIG.whatsapp}?text=${msg}`;
+  modal.style.display = 'flex';
+  resetBooking();
+}
+
+function closeSuccessModal() {
+  document.getElementById('success-modal').style.display = 'none';
+}
+
+function resetBooking() {
+  state.step = 1;
+  state.selectedService = null;
+  state.selectedDate = null;
+  state.selectedTime = null;
+  document.getElementById('patient-name').value = '';
+  document.getElementById('patient-phone').value = '';
+  document.getElementById('patient-notes').value = '';
+  document.querySelectorAll('.service-btn').forEach(b => {
+    b.classList.remove('selected', 'bg-medical-600', 'text-white', 'border-medical-600');
+    b.classList.add('border-gray-200');
+    b.querySelector('span:last-child')?.classList.remove('text-white');
+    b.querySelector('span:last-child')?.classList.add('text-gray-700');
+  });
+  goToStep(1);
+}
+
+function scrollToBooking() {
+  document.getElementById('booking').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ============================================================
+// ADMIN
+// ============================================================
+async function sha256(msg) {
+  const enc = new TextEncoder().encode(msg);
+  const buf = await crypto.subtle.digest('SHA-256', enc);
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function getAdminHash() {
+  try { return localStorage.getItem('hk_admin_hash') || '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'; } catch (e) { return '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'; }
+}
+
+function setAdminHash(h) {
+  try { localStorage.setItem('hk_admin_hash', h); } catch (e) { /* ignore */ }
+}
+
+function checkAdminAuth() {
+  try {
+    const token = localStorage.getItem('hk_admin_token');
+    if (token) {
+      const data = JSON.parse(atob(token));
+      if (data.exp > Date.now()) { showAdminPanel(); return true; }
+      localStorage.removeItem('hk_admin_token');
+    }
+  } catch (e) { localStorage.removeItem('hk_admin_token'); }
+  return false;
+}
+
+function openAdminLogin() {
+  if (checkAdminAuth()) return;
+  document.getElementById('admin-login-modal').style.display = 'flex';
+  document.getElementById('admin-password-input').value = '';
+  document.getElementById('admin-login-error').classList.add('hidden');
+  document.getElementById('admin-password-input').focus();
+}
+
+async function adminLogin(e) {
+  e.preventDefault();
+  const pass = document.getElementById('admin-password-input').value;
+  const hash = await sha256(pass);
+  if (hash === getAdminHash()) {
+    const data = btoa(JSON.stringify({ exp: Date.now() + CONFIG.adminTimeout }));
+    localStorage.setItem('hk_admin_token', data);
+    document.getElementById('admin-login-modal').style.display = 'none';
+    showAdminPanel();
+  } else {
+    document.getElementById('admin-login-error').classList.remove('hidden');
+  }
+}
+
+function showAdminPanel() {
+  document.getElementById('admin-panel').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  loadAdminData();
+  renderAdminBookings();
+  renderAdminServices();
+}
+
+function adminLogout() {
+  localStorage.removeItem('hk_admin_token');
+  document.getElementById('admin-panel').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+function switchAdminTab(tab, btn) {
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.admin-nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('admin-' + tab)?.classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (tab === 'bookings') renderAdminBookings();
+  if (tab === 'services-mgmt') renderAdminServices();
+  if (tab === 'dashboard') loadAdminData();
+}
+
+function loadAdminData() {
+  loadBookings();
+  const total = state.bookings.length;
+  const confirmed = state.bookings.filter(b => b.status === 'confirmed').length;
+  const pending = state.bookings.filter(b => b.status === 'pending').length;
+  const cancelled = state.bookings.filter(b => b.status === 'cancelled').length;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-confirmed').textContent = confirmed;
+  document.getElementById('stat-pending').textContent = pending;
+  document.getElementById('stat-cancelled').textContent = cancelled;
+}
+
+function loadBookings() {
+  try {
+    const saved = localStorage.getItem('hk_bookings');
+    if (saved) state.bookings = JSON.parse(saved);
+  } catch (e) { state.bookings = []; }
+  if (!Array.isArray(state.bookings)) state.bookings = [];
+}
+
+function renderAdminBookings() {
+  loadBookings();
+  const filter = document.getElementById('booking-filter')?.value || 'all';
+  const search = document.getElementById('booking-search')?.value || '';
+  let filtered = [...state.bookings].reverse();
+  if (filter !== 'all') filtered = filtered.filter(b => b.status === filter);
+  if (search) filtered = filtered.filter(b => b.name.includes(search) || b.phone.includes(search));
+  const tbody = document.getElementById('bookings-tbody');
+  const empty = document.getElementById('bookings-empty');
+  if (!tbody) return;
+  if (filtered.length === 0) {
+    tbody.innerHTML = '';
+    if (empty) empty.classList.remove('hidden');
+    return;
+  }
+  if (empty) empty.classList.add('hidden');
+  tbody.innerHTML = filtered.map((b, i) => {
+    const service = state.services.find(s => s.id === b.service);
+    return `<tr class="border-b border-gray-50 hover:bg-gray-50 transition-all">
+      <td class="p-3 text-gray-500 font-bold">${i + 1}</td>
+      <td class="p-3 font-bold text-gray-700">${sanitize(b.name)}</td>
+      <td class="p-3 text-gray-600" dir="ltr">${sanitize(b.phone)}</td>
+      <td class="p-3 text-gray-600">${service ? service.emoji + ' ' : ''}${service ? sanitize(service.name) : sanitize(b.service)}</td>
+      <td class="p-3 text-gray-600">${formatDateArabic(b.date)}</td>
+      <td class="p-3 text-gray-600 font-bold">${formatTimeArabic(b.time)}</td>
+      <td class="p-3"><span class="${getStatusClass(b.status)}">${getStatusText(b.status)}</span></td>
+      <td class="p-3 text-center">
+        <div class="flex items-center justify-center gap-1">
+          <button onclick="updateBookingStatus('${b.id}','confirmed')" class="action-btn bg-green-100 text-green-700 hover:bg-green-200" title="تأكيد"><img src="icons/check.svg" alt="" class="icon-img"></button>
+          <button onclick="updateBookingStatus('${b.id}','completed')" class="action-btn bg-blue-100 text-blue-700 hover:bg-blue-200" title="إنهاء"><img src="icons/save.svg" alt="" class="icon-img"></button>
+          <button onclick="updateBookingStatus('${b.id}','cancelled')" class="action-btn bg-red-100 text-red-700 hover:bg-red-200" title="إلغاء"><img src="icons/trash.svg" alt="" class="icon-img"></button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function updateBookingStatus(id, status) {
+  const b = state.bookings.find(bb => bb.id === id);
+  if (!b) return;
+  b.status = status;
+  localStorage.setItem('hk_bookings', JSON.stringify(state.bookings));
+  if (typeof supabaseClient !== 'undefined' && supabaseClient) {
+    supabaseClient.from('bookings').update({ status }).eq('id', id).catch(() => {});
+  }
+  renderAdminBookings();
+  loadAdminData();
+}
+
+function refreshBookings() {
+  loadBookings();
+  renderAdminBookings();
+  loadAdminData();
+}
+
+let searchTimer = null;
+function debounceSearch(val) {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => renderAdminBookings(), 300);
+}
+
+// ============================================================
+// ADMIN SERVICES MANAGEMENT
+// ============================================================
+function renderAdminServices() {
+  loadServices();
+  const tbody = document.getElementById('services-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = state.services.map(s => `
+    <tr class="border-b border-gray-50 hover:bg-gray-50 transition-all">
+      <td class="p-3 font-bold text-gray-700">${sanitize(s.name)}</td>
+      <td class="p-3 text-2xl text-center">${s.emoji}</td>
+      <td class="p-3 text-center">
+        <div class="flex items-center justify-center gap-2">
+          <button onclick="editService('${s.id}')" class="action-btn bg-medical-100 text-medical-700 hover:bg-medical-200"><img src="icons/save.svg" alt="" class="icon-img"></button>
+          <button onclick="deleteService('${s.id}')" class="action-btn bg-red-100 text-red-700 hover:bg-red-200"><img src="icons/trash.svg" alt="" class="icon-img"></button>
+        </div>
+      </td>
+    </tr>
+  `).join('');
+}
+
+function showAddServiceModal() {
+  document.getElementById('service-modal-title').textContent = 'إضافة خدمة جديدة';
+  document.getElementById('service-name-input').value = '';
+  document.getElementById('service-emoji-input').value = '🦷';
+  document.getElementById('service-edit-id').value = '';
+  document.getElementById('add-service-modal').style.display = 'flex';
+}
+
+function closeAddServiceModal() {
+  document.getElementById('add-service-modal').style.display = 'none';
+}
+
+function editService(id) {
+  const s = state.services.find(ss => ss.id === id);
+  if (!s) return;
+  document.getElementById('service-modal-title').textContent = 'تعديل الخدمة';
+  document.getElementById('service-name-input').value = s.name;
+  document.getElementById('service-emoji-input').value = s.emoji;
+  document.getElementById('service-edit-id').value = id;
+  document.getElementById('add-service-modal').style.display = 'flex';
+}
+
+function saveService() {
+  const name = document.getElementById('service-name-input').value.trim();
+  const emoji = document.getElementById('service-emoji-input').value.trim();
+  const editId = document.getElementById('service-edit-id').value;
+  if (!name) { alert('يرجى إدخال اسم الخدمة'); return; }
+  if (!emoji) { alert('يرجى إدخال إيموجي'); return; }
+  if (editId) {
+    const s = state.services.find(ss => ss.id === editId);
+    if (s) { s.name = name; s.emoji = emoji; }
+  } else {
+    state.services.push({ id: generateId(), name, emoji });
+  }
+  saveServices();
+  renderAdminServices();
+  renderServicesUI();
+  renderServiceButtons();
+  closeAddServiceModal();
+}
+
+function deleteService(id) {
+  if (!confirm('هل أنت متأكد من حذف هذه الخدمة؟')) return;
+  state.services = state.services.filter(s => s.id !== id);
+  saveServices();
+  renderAdminServices();
+  renderServicesUI();
+  renderServiceButtons();
+}
+
+// ============================================================
+// SETTINGS
+// ============================================================
+function loadSettings() {
+  try {
+    const s = JSON.parse(localStorage.getItem('hk_settings'));
+    if (s) {
+      if (s.clinicName) { CONFIG.clinicName = s.clinicName; document.getElementById('setting-clinic-name').value = s.clinicName; }
+      if (s.doctorName) { CONFIG.doctorName = s.doctorName; document.getElementById('setting-doctor-name').value = s.doctorName; }
+      if (s.whatsapp) { CONFIG.whatsapp = s.whatsapp; document.getElementById('setting-whatsapp').value = s.whatsapp; }
+    }
+  } catch (e) { /* ignore */ }
+}
+
+function saveSettings() {
+  const clinicName = document.getElementById('setting-clinic-name').value.trim();
+  const doctorName = document.getElementById('setting-doctor-name').value.trim();
+  const whatsapp = document.getElementById('setting-whatsapp').value.trim();
+  const password = document.getElementById('setting-password').value;
+  const settings = { clinicName, doctorName, whatsapp };
+  CONFIG.clinicName = clinicName || CONFIG.clinicName;
+  CONFIG.doctorName = doctorName || CONFIG.doctorName;
+  CONFIG.whatsapp = whatsapp || CONFIG.whatsapp;
+  localStorage.setItem('hk_settings', JSON.stringify(settings));
+  if (password && password.length >= 4) {
+    sha256(password).then(h => { setAdminHash(h); alert('تم حفظ الإعدادات وتغيير كلمة المرور'); });
+  } else {
+    alert('تم حفظ الإعدادات');
+  }
+  document.getElementById('setting-password').value = '';
+}
+
+// ============================================================
+// INIT
+// ============================================================
+function init() {
+  loadServices();
+  loadBookings();
+  loadSettings();
+  renderServicesUI();
+  renderServiceButtons();
+  renderDates();
+  goToStep(1);
+  if (checkAdminAuth()) showAdminPanel();
+  setTimeout(() => {
+    const ls = document.getElementById('loading-screen');
+    if (ls) { ls.style.opacity = '0'; setTimeout(() => ls.style.display = 'none', 500); }
+  }, 800);
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>

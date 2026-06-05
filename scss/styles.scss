@@ -1,0 +1,114 @@
+// ===== مركز قنديل - Dental Clinic Stylesheet =====
+
+$medical-50: #eff9fb;
+$medical-100: #d6f0f5;
+$medical-200: #b2e2eb;
+$medical-300: #7dcedd;
+$medical-400: #41b3c9;
+$medical-500: #2698af;
+$medical-600: #1b7a8f;
+$medical-700: #166375;
+$medical-800: #155161;
+$medical-900: #0e3d4a;
+
+$white: #ffffff;
+$gray-50: #f8fafc;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+
+$font-family: 'Tajawal', 'Cairo', sans-serif;
+$border-radius: 16px;
+$transition: all 0.25s;
+
+@mixin mobile {
+    @media (max-width: 640px) { @content; }
+}
+@mixin small-mobile {
+    @media (max-width: 400px) { @content; }
+}
+
+* { font-family: $font-family; }
+html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body { background: $gray-50; overflow-x: hidden; min-height: 100vh; }
+input, textarea { &:focus { outline: none; } }
+
+.hero-gradient {
+    background: linear-gradient(135deg, $medical-900 0%, $medical-800 30%, $medical-600 60%, #1f8fa3 100%);
+}
+
+.time-slot {
+    transition: $transition; cursor: pointer; border: 2px solid $gray-200;
+    border-radius: $border-radius; padding: 18px 14px; text-align: center;
+    font-weight: 700; font-size: 1.05rem; user-select: none; background: white;
+    &:hover:not(.booked) { border-color: $medical-500; background: $medical-50; transform: scale(1.03); }
+    &.selected { background: $medical-600 !important; color: white !important; border-color: $medical-600 !important; transform: scale(1.04); box-shadow: 0 4px 16px rgba($medical-600, 0.3); }
+    &.booked { background: $gray-100; color: $gray-400; cursor: not-allowed; text-decoration: line-through; pointer-events: none; opacity: 0.7; }
+}
+
+.date-card {
+    transition: $transition; cursor: pointer; border: 2px solid $gray-200;
+    background: white; border-radius: $border-radius; padding: 12px 8px;
+    text-align: center; min-width: 75px; user-select: none; flex-shrink: 0;
+    &:hover { border-color: $medical-500; background: $medical-50; }
+    &.selected { background: $medical-600 !important; color: white !important; border-color: $medical-600 !important; }
+    &.full { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+}
+
+@keyframes modalPop {
+    from { opacity: 0; transform: scale(0.8) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-pop { animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner { width: 24px; height: 24px; border: 3px solid $gray-200; border-top: 3px solid $medical-600; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
+
+.modal-overlay { background: rgba(0,0,0,0.55); backdrop-filter: blur(4px); }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.animate-in { animation: fadeInUp 0.5s ease forwards; }
+
+@keyframes slideLeft { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+.slide-left { animation: slideLeft 0.3s ease forwards; }
+
+.admin-panel { display: none; position: fixed; inset: 0; z-index: 9999; background: $gray-100; direction: rtl; overflow-y: auto; }
+.admin-sidebar { background: linear-gradient(180deg, $medical-900 0%, $medical-800 100%); width: 220px; flex-shrink: 0; }
+.admin-nav-btn { display: block; width: 100%; text-align: right; padding: 12px 16px; border-radius: 10px; color: white; transition: all 0.2s; font-size: 14px; &:hover { background: rgba(255,255,255,0.1); } &.active { background: rgba(255,255,255,0.2); font-weight: bold; } }
+.admin-section { display: none; &.active { display: block; animation: fadeInUp 0.3s ease; } }
+.stat-card { transition: all 0.3s; &:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); } }
+.status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; &.pending { background: #fef3c7; color: #92400e; } &.confirmed { background: #d1fae5; color: #065f46; } &.completed { background: #dbeafe; color: #1e40af; } &.cancelled { background: #fee2e2; color: #991b1b; } }
+.action-btn { transition: all 0.2s; cursor: pointer; border-radius: 8px; padding: 6px 10px; font-size: 13px; border: none; font-weight: 600; &:hover { transform: scale(1.05); } }
+.icon-img { display: inline-block; vertical-align: middle; width: 1em; height: 1em; }
+.icon-img-lg { display: inline-block; vertical-align: middle; width: 1.4em; height: 1.4em; }
+.icon-img-xl { display: inline-block; vertical-align: middle; width: 2em; height: 2em; }
+.icon-img-3xl { display: inline-block; vertical-align: middle; width: 3em; height: 3em; }
+.icon-img-5xl { display: inline-block; vertical-align: middle; width: 5em; height: 5em; }
+
+@include mobile {
+    .date-card { min-width: 55px; padding: 8px 4px; font-size: 0.7rem; }
+    .time-slot { padding: 18px 14px; font-size: 1.05rem; border-radius: $border-radius; min-height: 60px; display: flex; align-items: center; justify-content: center; &.selected { transform: scale(1.03); } }
+    #confirm-btn { padding: 16px !important; font-size: 1rem !important; }
+    #patient-form input, #patient-form textarea { padding: 14px !important; font-size: 16px !important; }
+    .hero-gradient { h1 { font-size: 1.8rem !important; } p { font-size: 0.95rem !important; } .py-16 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; } }
+    .admin-panel .flex.h-screen { flex-direction: column-reverse; }
+    .admin-sidebar { width: 100% !important; flex-direction: row; padding: 4px 6px; overflow-x: auto; align-items: center; min-height: 52px; }
+    .admin-sidebar .text-center.py-4 { display: none; }
+    .admin-sidebar nav { display: flex; gap: 2px; flex: 1; }
+    .admin-nav-btn { padding: 10px 12px; font-size: 13px; white-space: nowrap; }
+    .admin-sidebar .border-t { display: none; }
+    .admin-panel .flex-1.p-6 { padding: 12px !important; }
+    .stat-card .text-3xl { font-size: 1.5rem !important; }
+    #admin-login-modal .max-w-sm { margin: 0 10px; }
+    .form-group-row { flex-direction: column; gap: 0; }
+}
+
+@include small-mobile {
+    .date-card { min-width: 46px; padding: 6px 2px; font-size: 0.62rem; }
+    .time-slot { padding: 16px 12px; font-size: 1rem; min-height: 54px; }
+    .admin-nav-btn { font-size: 11px; padding: 8px 8px; }
+}

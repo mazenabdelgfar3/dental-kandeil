@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - مركز قنديل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { font-family: 'Tajawal', 'Cairo', sans-serif; }
+        body { background: #F8FAFC; }
+        .sidebar { background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%); }
+        .nav-item.active { background: rgba(255,255,255,0.2); }
+        .stat-card { transition: all 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); }
+        .data-table th { background: #F1F5F9; }
+        .data-table tr:hover { background: #F8FAFC; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .slide-in { animation: slideIn 0.3s ease forwards; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#0EA5B7] to-[#06B6D4] flex items-center justify-center">
+                    <span class="text-xl">🦷</span>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg text-gray-800">لوحة التحكم</h1>
+                    <p class="text-xs text-gray-500">مركز قنديل لطب وتجميل Teeth</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500" id="current-date"></span>
+                <a href="index.html" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition text-sm">🏠 الرئيسية</a>
+                <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition text-sm">🚪 خروج</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex min-h-[calc(100vh-65px)]">
+        <!-- Sidebar -->
+        <aside class="w-64 sidebar text-white p-4 flex-shrink-0 hidden md:block">
+            <div class="text-center py-4 border-b border-white/10 mb-4">
+                <span class="text-4xl">👨‍💼</span>
+                <p class="mt-2 font-bold">مدير النظام</p>
+            </div>
+            
+            <nav class="space-y-2">
+                <button onclick="showSection('dashboard')" id="nav-dashboard" class="nav-item w-full text-right p-3 rounded-xl hover:bg-white/10 transition flex items-center gap-3 active">
+                    <span>📊</span> الرئيسية
+                </button>
+                <button onclick="showSection('bookings')" id="nav-bookings" class="nav-item w-full text-right p-3 rounded-xl hover:bg-white/10 transition flex items-center gap-3">
+                    <span>📅</span> الحجوزات
+                </button>
+                <button onclick="showSection('calendar')" id="nav-calendar" class="nav-item w-full text-right p-3 rounded-xl hover:bg-white/10 transition flex items-center gap-3">
+                    <span>🗓️</span> التقويم
+                </button>
+                <button onclick="showSection('services')" id="nav-services" class="nav-item w-full text-right p-3 rounded-xl hover:bg-white/10 transition flex items-center gap-3">
+                    <span>🩺</span> الخدمات
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            
+            <!-- Dashboard Section -->
+            <section id="section-dashboard" class="slide-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">📊 إحصائيات لوحة التحكم</h2>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="stat-card bg-white p-5 rounded-2xl shadow-sm border-l-4 border-[#0EA5B7]">
+                        <div class="text-3xl font-bold text-gray-800" id="stat-today">0</div>
+                        <p class="text-gray-500 text-sm">حجوزات اليوم</p>
+                    </div>
+                    <div class="stat-card bg-white p-5 rounded-2xl shadow-sm border-l-4 border-green-500">
+                        <div class="text-3xl font-bold text-gray-800" id="stat-total">0</div>
+                        <p class="text-gray-500 text-sm">إجمالي الحجوزات</p>
+                    </div>
+                    <div class="stat-card bg-white p-5 rounded-2xl shadow-sm border-l-4 border-yellow-500">
+                        <div class="text-3xl font-bold text-gray-800" id="stat-week">0</div>
+                        <p class="text-gray-500 text-sm">هذا الأسبوع</p>
+                    </div>
+                    <div class="stat-card bg-white p-5 rounded-2xl shadow-sm border-l-4 border-red-500">
+                        <div class="text-3xl font-bold text-gray-800" id="stat-cancelled">0</div>
+                        <p class="text-gray-500 text-sm">ملغيات</p>
+                    </div>
+                </div>
+
+                <!-- Recent Bookings -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+                    <div class="p-5 border-b">
+                        <h3 class="text-lg font-bold text-gray-800">📋 آخر الحجوزات</h3>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm data-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-right p-4">#</th>
+                                    <th class="text-right p-4">المريض</th>
+                                    <th class="text-right p-4">الهاتف</th>
+                                    <th class="text-right p-4">الخدمة</th>
+                                    <th class="text-right p-4">التاريخ</th>
+                                    <th class="text-right p-4">الوقت</th>
+                                    <th class="text-right p-4">الحالة</th>
+                                    <th class="text-right p-4">إجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-bookings"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bookings Section -->
+            <section id="section-bookings" class="hidden slide-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">📅 جميع الحجوزات</h2>
+                
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+                    <div class="p-4 border-b flex flex-wrap gap-4">
+                        <input type="text" id="search-bookings" placeholder="🔍 بحث بالاسم أو الهاتف..." class="p-2 border rounded-lg text-sm flex-1 min-w-[200px]">
+                        <select id="filter-status" class="p-2 border rounded-lg text-sm">
+                            <option value="">كل الحالات</option>
+                            <option value="pending">قيد الانتظار</option>
+                            <option value="confirmed">مؤكد</option>
+                            <option value="completed">مكتمل</option>
+                            <option value="cancelled">ملغي</option>
+                        </select>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm data-table">
+                            <thead>
+                                <tr>
+                                    <th class="text-right p-4">#</th>
+                                    <th class="text-right p-4">المريض</th>
+                                    <th class="text-right p-4">الهاتف</th>
+                                    <th class="text-right p-4">الخدمة</th>
+                                    <th class="text-right p-4">التاريخ</th>
+                                    <th class="text-right p-4">الوقت</th>
+                                    <th class="text-right p-4">الحالة</th>
+                                    <th class="text-right p-4">إجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="all-bookings"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calendar Section -->
+            <section id="section-calendar" class="hidden slide-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">🗓️ التقويم الشهري</h2>
+                
+                <div class="bg-white rounded-2xl shadow-sm p-5">
+                    <div class="flex items-center justify-between mb-4">
+                        <button onclick="changeMonth(-1)" class="p-2 hover:bg-gray-100 rounded-lg text-xl">◀</button>
+                        <h3 class="text-xl font-bold" id="calendar-month"></h3>
+                        <button onclick="changeMonth(1)" class="p-2 hover:bg-gray-100 rounded-lg text-xl">▶</button>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-sm mb-2">
+                        <div class="p-2 font-bold text-red-500">جمعة</div>
+                        <div class="p-2 font-bold">سبت</div>
+                        <div class="p-2 font-bold">أحد</div>
+                        <div class="p-2 font-bold">إثنين</div>
+                        <div class="p-2 font-bold">ثلاثاء</div>
+                        <div class="p-2 font-bold">أربعاء</div>
+                        <div class="p-2 font-bold">خميس</div>
+                    </div>
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-1"></div>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <section id="section-services" class="hidden slide-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">🩺 إدارة الخدمات</h2>
+                
+                <div class="bg-white rounded-2xl shadow-sm p-5">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold">قائمة الخدمات</h3>
+                        <button onclick="showAddServiceModal()" class="bg-[#0EA5B7] text-white px-4 py-2 rounded-lg hover:opacity-90 transition">
+                            ➕ إضافة خدمة
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="services-list"></div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Add Service Modal -->
+    <div id="add-service-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full">
+            <h3 class="text-xl font-bold mb-4">➕ إضافة خدمة جديدة</h3>
+            <div class="space-y-4">
+                <input type="text" id="new-service-name" placeholder="اسم الخدمة" class="w-full p-3 border rounded-lg">
+                <input type="number" id="new-service-price" placeholder="السعر (جنيه)" class="w-full p-3 border rounded-lg">
+                <input type="number" id="new-service-duration" placeholder="المدة (دقيقة)" class="w-full p-3 border rounded-lg">
+                <div class="flex gap-2">
+                    <button onclick="addService()" class="flex-1 bg-[#0EA5B7] text-white p-3 rounded-lg hover:opacity-90 transition">إضافة</button>
+                    <button onclick="closeAddServiceModal()" class="px-4 p-3 border rounded-lg hover:bg-gray-50">إلغاء</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Storage Keys
+        const BOOKINGS_KEY = 'kandil_bookings';
+        const SERVICES_KEY = 'kandil_services';
+        
+        let allBookings = [];
+        let services = [];
+        let calendarDate = new Date();
+
+        // Initialize
+        function init() {
+            // Check authentication
+            const adminData = localStorage.getItem('kandil_admin_session');
+            if (!adminData) {
+                window.location.href = 'admin-login.html';
+                return;
+            }
+            
+            const admin = JSON.parse(adminData);
+            if (!admin.loggedIn || !admin.loginTime) {
+                localStorage.removeItem('kandil_admin_session');
+                window.location.href = 'admin-login.html';
+                return;
+            }
+            
+            // Check 24h expiry
+            const dayAgo = Date.now() - (24 * 60 * 60 * 1000);
+            if (admin.loginTime < dayAgo) {
+                localStorage.removeItem('kandil_admin_session');
+                window.location.href = 'admin-login.html';
+                return;
+            }
+
+            // Set current date
+            document.getElementById('current-date').textContent = new Date().toLocaleDateString('ar-SA', { 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+            });
+
+            loadData();
+            updateStats();
+            renderRecentBookings();
+            renderAllBookings();
+            renderCalendar();
+            renderServices();
+        }
+
+        function loadData() {
+            const bookingsStored = localStorage.getItem(BOOKINGS_KEY);
+            allBookings = bookingsStored ? JSON.parse(bookingsStored) : [];
+
+            const servicesStored = localStorage.getItem(SERVICES_KEY);
+            services = servicesStored ? JSON.parse(servicesStored) : [
+                { id: '1', name_ar: 'تنظيف Teeth', icon: '🪥', price: 200, duration: 30 },
+                { id: '2', name_ar: 'حشو Teeth', icon: '🦷', price: 300, duration: 45 },
+                { id: '3', name_ar: 'تقويم Teeth', icon: '😁', price: 5000, duration: 60 },
+                { id: '4', name_ar: 'زراعة Teeth', icon: '🔩', price: 3000, duration: 90 },
+                { id: '5', name_ar: 'تبييض Teeth', icon: '✨', price: 1500, duration: 45 }
+            ];
+        }
+
+        // Navigation
+        function showSection(section) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('section-' + section).classList.remove('hidden');
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            document.getElementById('nav-' + section).classList.add('active');
+        }
+
+        // Stats
+        function updateStats() {
+            const today = new Date().toISOString().split('T')[0];
+            const weekAgo = new Date();
+            weekAgo.setDate(weekAgo.getDate() - 7);
+
+            const todayBookings = allBookings.filter(b => b.booking_date === today && b.status === 'confirmed');
+            const weekBookings = allBookings.filter(b => b.booking_date >= weekAgo.toISOString().split('T')[0]);
+            const cancelled = allBookings.filter(b => b.status === 'cancelled');
+
+            document.getElementById('stat-today').textContent = todayBookings.length;
+            document.getElementById('stat-total').textContent = allBookings.length;
+            document.getElementById('stat-week').textContent = weekBookings.length;
+            document.getElementById('stat-cancelled').textContent = cancelled.length;
+        }
+
+        // Render Tables
+        function renderRecentBookings() {
+            const tbody = document.getElementById('recent-bookings');
+            const recent = allBookings.slice(0, 10);
+            
+            tbody.innerHTML = recent.map((b, i) => `
+                <tr class="border-b">
+                    <td class="p-4">${i+1}</td>
+                    <td class="p-4 font-semibold">${b.patient_name}</td>
+                    <td class="p-4 text-[#0EA5B7]">${b.patient_phone}</td>
+                    <td class="p-4">${b.service_icon || ''} ${b.service_name}</td>
+                    <td class="p-4">${formatDate(b.booking_date)}</td>
+                    <td class="p-4">${b.booking_time}</td>
+                    <td class="p-4">
+                        <span class="px-2 py-1 rounded-full text-xs ${getStatusClass(b.status)}">${getStatusText(b.status)}</span>
+                    </td>
+                    <td class="p-4">
+                        <button onclick="changeStatus('${b.id}', 'confirmed')" class="text-green-600 hover:bg-green-50 p-1 rounded" title="تأكيد">✓</button>
+                        <button onclick="changeStatus('${b.id}', 'completed')" class="text-blue-600 hover:bg-blue-50 p-1 rounded" title="إكمال">●</button>
+                        <button onclick="changeStatus('${b.id}', 'cancelled')" class="text-red-600 hover:bg-red-50 p-1 rounded" title="إلغاء">✗</button>
+                    </td>
+                </tr>
+            `).join('') || '<tr><td colspan="8" class="p-8 text-center text-gray-400">لا توجد حجوزات</td></tr>';
+        }
+
+        function renderAllBookings() {
+            const tbody = document.getElementById('all-bookings');
+            tbody.innerHTML = allBookings.map((b, i) => `
+                <tr class="border-b">
+                    <td class="p-4">${i+1}</td>
+                    <td class="p-4 font-semibold">${b.patient_name}</td>
+                    <td class="p-4 text-[#0EA5B7]">${b.patient_phone}</td>
+                    <td class="p-4">${b.service_icon || ''} ${b.service_name}</td>
+                    <td class="p-4">${formatDate(b.booking_date)}</td>
+                    <td class="p-4">${b.booking_time}</td>
+                    <td class="p-4">
+                        <span class="px-2 py-1 rounded-full text-xs ${getStatusClass(b.status)}">${getStatusText(b.status)}</span>
+                    </td>
+                    <td class="p-4">
+                        <button onclick="changeStatus('${b.id}', 'confirmed')" class="text-green-600 hover:bg-green-50 p-1 rounded">✓</button>
+                        <button onclick="changeStatus('${b.id}', 'completed')" class="text-blue-600 hover:bg-blue-50 p-1 rounded">●</button>
+                        <button onclick="changeStatus('${b.id}', 'cancelled')" class="text-red-600 hover:bg-red-50 p-1 rounded">✗</button>
+                    </td>
+                </tr>
+            `).join('') || '<tr><td colspan="8" class="p-8 text-center text-gray-400">لا توجد حجوزات</td></tr>';
+        }
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            const monthLabel = document.getElementById('calendar-month');
+            
+            const year = calendarDate.getFullYear();
+            const month = calendarDate.getMonth();
+            
+            monthLabel.textContent = new Date(year, month).toLocaleDateString('ar-SA', { month: 'long', year: 'numeric' });
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            let html = '';
+            
+            // Empty cells
+            for (let i = 0; i < firstDay; i++) html += '<div class="p-2"></div>';
+            
+            // Days
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+                const bookings = allBookings.filter(b => b.booking_date === dateStr && b.status === 'confirmed');
+                const isToday = dateStr === new Date().toISOString().split('T')[0];
+                
+                html += `
+                    <div class="p-2 text-center ${isToday ? 'bg-[#0EA5B7] text-white rounded-lg' : 'hover:bg-gray-100 rounded-lg'}">
+                        <div class="font-bold">${day}</div>
+                        ${bookings.length > 0 ? `<div class="text-xs text-green-600 font-semibold">${bookings.length} حجز</div>` : ''}
+                    </div>
+                `;
+            }
+            
+            grid.innerHTML = html;
+        }
+
+        function changeMonth(delta) {
+            calendarDate.setMonth(calendarDate.getMonth() + delta);
+            renderCalendar();
+        }
+
+        function renderServices() {
+            const list = document.getElementById('services-list');
+            list.innerHTML = services.map(s => `
+                <div class="border rounded-xl p-4 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl">${s.icon}</span>
+                        <div>
+                            <h4 class="font-bold">${s.name_ar}</h4>
+                            <p class="text-sm text-gray-500">${s.price} جم - ${s.duration || 30} دقيقة</p>
+                        </div>
+                    </div>
+                    <button onclick="deleteService('${s.id}')" class="text-red-600 hover:bg-red-50 p-2 rounded">🗑️</button>
+                </div>
+            `).join('');
+        }
+
+        // Actions
+        function changeStatus(id, status) {
+            const idx = allBookings.findIndex(b => b.id === id);
+            if (idx !== -1) {
+                allBookings[idx].status = status;
+                localStorage.setItem(BOOKINGS_KEY, JSON.stringify(allBookings));
+                loadData();
+                updateStats();
+                renderRecentBookings();
+                renderAllBookings();
+                renderCalendar();
+            }
+        }
+
+        function deleteService(id) {
+            if (confirm('هل أنت متأكد من حذف هذه الخدمة؟')) {
+                services = services.filter(s => s.id !== id);
+                localStorage.setItem(SERVICES_KEY, JSON.stringify(services));
+                renderServices();
+            }
+        }
+
+        function showAddServiceModal() {
+            document.getElementById('add-service-modal').classList.remove('hidden');
+            document.getElementById('add-service-modal').classList.add('flex');
+        }
+
+        function closeAddServiceModal() {
+            document.getElementById('add-service-modal').classList.add('hidden');
+            document.getElementById('add-service-modal').classList.remove('flex');
+        }
+
+        function addService() {
+            const name = document.getElementById('new-service-name').value;
+            const price = document.getElementById('new-service-price').value;
+            const duration = document.getElementById('new-service-duration').value;
+            
+            if (!name || !price) return alert('يرجى إدخال اسم الخدمة والسعر');
+            
+            services.push({
+                id: Date.now().toString(),
+                name_ar: name,
+                icon: '🦷',
+                price: parseInt(price),
+                duration: parseInt(duration) || 30
+            });
+            
+            localStorage.setItem(SERVICES_KEY, JSON.stringify(services));
+            renderServices();
+            closeAddServiceModal();
+            
+            document.getElementById('new-service-name').value = '';
+            document.getElementById('new-service-price').value = '';
+            document.getElementById('new-service-duration').value = '';
+        }
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('kandil_admin_session');
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        // Helpers
+        function formatDate(dateStr) {
+            const d = new Date(dateStr + 'T00:00:00');
+            const months = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+            return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+        }
+
+        function getStatusClass(status) {
+            const classes = {
+                pending: 'bg-yellow-100 text-yellow-700',
+                confirmed: 'bg-green-100 text-green-700',
+                completed: 'bg-blue-100 text-blue-700',
+                cancelled: 'bg-red-100 text-red-700'
+            };
+            return classes[status] || 'bg-gray-100 text-gray-700';
+        }
+
+        function getStatusText(status) {
+            const texts = {
+                pending: 'قيد الانتظار',
+                confirmed: 'مؤكد',
+                completed: 'مكتمل',
+                cancelled: 'ملغي'
+            };
+            return texts[status] || status;
+        }
+
+        // Start
+        init();
+    </script>
+</body>
+</html>
